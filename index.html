@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trivia Answer Reveal</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="shell">
+    <header class="top">
+      <h1>LIVE TRIVIA</h1>
+    </header>
+
+    <section id="entry-panel" class="panel">
+      <h2>Join a game</h2>
+      <label for="player-name">Your name</label>
+      <input id="player-name" maxlength="30" placeholder="e.g. Alex" autocomplete="name">
+      <label for="room-code">Room code <span class="muted">(players)</span></label>
+      <input id="room-code" maxlength="5" placeholder="ABC12" autocapitalize="characters">
+      <div class="actions">
+        <button id="join-button">Join game</button>
+        <button id="create-button" class="secondary">Create host room</button>
+      </div>
+      <p class="hint">The host creates a room and shares the code with everyone.</p>
+    </section>
+
+    <section id="game-panel" class="hidden">
+      <div class="room-banner">
+        <div><span class="muted">ROOM</span><strong id="room-code-display">-----</strong></div>
+        <div><span class="muted">PLAYING AS</span><strong id="name-display">—</strong></div>
+        <div><span class="muted">QUESTION</span><strong id="question-number">1</strong></div>
+      </div>
+
+
+      <section id="player-panel" class="panel hidden">
+        <h2>Your answer</h2>
+        <form id="answer-form">
+          <label for="answer-input">Answer</label>
+          <input id="answer-input" maxlength="500" placeholder="Type your answer…" autocomplete="off">
+          <button id="submit-button" type="submit">Submit answer</button>
+        </form>
+        <p id="submission-message" class="hint">Your answer stays hidden until the host reveals it.</p>
+      </section>
+
+      <section id="host-panel" class="panel hidden">
+        <h2>Host controls</h2>
+        <div class="actions">
+          <button id="next-question-button" class="secondary">Next question</button>
+        </div>
+        <div class="actions">
+          <button id="reveal-button">Reveal answers</button>
+          <button id="hide-button" class="secondary">Hide answers</button>
+        </div>
+        <button id="reset-button" class="danger">Reset answers for this question</button>
+        <p class="hint">Reset clears only this question's submissions. Players cannot access host controls.</p>
+      </section>
+
+      <section class="panel">
+        <div class="list-heading">
+          <h2>Players</h2>
+          <span id="counts" class="pill">0 submitted</span>
+        </div>
+        <ul id="players-list" class="players-list"></ul>
+      </section>
+      <button id="leave-button" class="text-button">Leave game</button>
+    </section>
+    <div id="toast" role="status" aria-live="polite"></div>
+  </main>
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

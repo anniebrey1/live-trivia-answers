@@ -1,0 +1,77 @@
+:root {
+  color-scheme: light;
+  --ink: #202338;
+  --muted: #6d7185;
+  --purple: #6154d9;
+  --purple-dark: #4b40bb;
+  --line: #e7e8f0;
+  --surface: #ffffff;
+  --bg: #f5f6fb;
+  --green: #147d55;
+  --red: #b52f48;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background-color: #e2e0ff;
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.shell { width: min(760px, calc(100% - 28px)); margin: 0 auto; padding: 34px 0 56px; }
+.top { text-align: center; margin-bottom: 26px; }
+.eyebrow { color: var(--purple); font-size: .74rem; font-weight: 800; letter-spacing: .16em; }
+h1 { margin: 8px 0 4px; font-size: clamp(2rem, 6vw, 3rem); letter-spacing: -.045em; }
+h2 { margin: 0 0 16px; font-size: 1.2rem; }
+.sub, .hint, .muted { color: var(--muted); }
+.sub { margin: 0; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 22px; margin: 14px 0; box-shadow: 0 8px 28px #26264a0a; }
+label { display: block; font-size: .9rem; font-weight: 650; margin: 14px 0 7px; }
+input, textarea {
+  width: 100%; border: 1px solid #d9dbea; border-radius: 10px; padding: 12px 13px;
+  font: inherit; color: var(--ink); background: #fff; outline: none;
+}
+input:focus, textarea:focus { border-color: var(--purple); box-shadow: 0 0 0 3px #6154d91a; }
+button {
+  border: 0; border-radius: 10px; padding: 11px 15px; background: var(--purple); color: white;
+  font: inherit; font-weight: 700; cursor: pointer; transition: background .15s, transform .15s;
+}
+button:hover { background: var(--purple-dark); }
+button:active { transform: translateY(1px); }
+button:disabled { opacity: .45; cursor: not-allowed; }
+button.secondary { background: #eeedff; color: var(--purple-dark); }
+button.secondary:hover { background: #e2e0ff; }
+button.danger { background: #fff0f2; color: var(--red); width: 100%; margin-top: 10px; }
+button.danger:hover { background: #ffe1e6; }
+.actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 13px; }
+.actions button { flex: 1 1 auto; }
+.hint { font-size: .86rem; margin: 14px 0 0; line-height: 1.45; }
+.hidden { display: none !important; }
+.room-banner { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.room-banner > div { display: flex; flex-direction: column; gap: 5px; background: #fff; border: 1px solid var(--line); border-radius: 13px; padding: 13px; min-width: 0; }
+.room-banner .muted { font-size: .68rem; font-weight: 800; letter-spacing: .08em; }
+.room-banner strong { font-size: 1rem; overflow-wrap: anywhere; }
+.question-panel { border-top: 4px solid var(--purple); }
+.question-panel h2 { font-size: clamp(1.2rem, 4vw, 1.7rem); line-height: 1.35; margin: 9px 0 14px; }
+.status { display: inline-block; border-radius: 999px; padding: 6px 10px; background: #eef8f3; color: var(--green); font-size: .82rem; font-weight: 700; margin: 0; }
+.list-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.list-heading h2 { margin: 0; }
+.pill { background: #f0efff; color: var(--purple-dark); border-radius: 999px; padding: 6px 10px; font-size: .8rem; font-weight: 750; white-space: nowrap; }
+.players-list { list-style: none; margin: 14px 0 0; padding: 0; }
+.players-list li { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; padding: 12px 0; border-top: 1px solid var(--line); }
+.player-name { font-weight: 650; }
+.player-answer { text-align: right; max-width: 62%; overflow-wrap: anywhere; color: var(--muted); font-size: .92rem; }
+.player-answer.submitted { color: var(--green); font-weight: 700; }
+.player-answer.waiting { color: #9a7b36; }
+.text-button { display: block; margin: 18px auto 0; background: transparent; color: var(--muted); }
+.text-button:hover { color: var(--ink); background: transparent; }
+#toast { position: fixed; left: 50%; bottom: 20px; transform: translate(-50%, 20px); background: #24243a; color: #fff; padding: 12px 16px; border-radius: 12px; box-shadow: 0 8px 30px #0002; opacity: 0; pointer-events: none; transition: .2s; width: max-content; max-width: calc(100% - 28px); z-index: 10; }
+#toast.show { opacity: 1; transform: translate(-50%, 0); }
+@media (max-width: 520px) {
+  .shell { padding-top: 22px; }
+  .panel { padding: 17px; }
+  .room-banner { gap: 6px; }
+  .room-banner > div { padding: 10px 8px; }
+  .room-banner strong { font-size: .88rem; }
+  .actions { flex-direction: column; }
+  .actions button { width: 100%; }
+}
